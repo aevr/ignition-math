@@ -1,0 +1,27 @@
+def inttrap(*args):
+	""" Trapezoidal integration
+	Integrates a vector given the inputs : x,y.
+	If only one input is given, deltaX = 1 and input is y.
+	Format of the inputs : x = [1,2,3], x = [1,2,3]
+	"""
+	i_val = 0
+	if len(args) == 2:
+		x=args[0]
+		y=args[1]
+		y_size = len(y)
+		for i in range(0,y_size-1):
+			i_val = i_val + (x[i+1] - x[i]) * ((y[i] + y[i+1]))*0.5
+	if len(args) == 1:
+		y=args[0]
+		y_size = len(y)
+		for i in range(1,y_size-1):
+			i_val = y[i] + i_val
+		
+		try:
+			i_val = (0.5) * (y[0]+ 2*i_val + y[y_size - 1])
+		except:
+			#print y
+			#print i_val
+			#print y[y_size - 1]
+			raise IndexError('probelem with inputs')
+	return i_val
